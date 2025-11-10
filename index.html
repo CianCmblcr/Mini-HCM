@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini HCM</title>
+
+    <!-- ✅ Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: "#4f46e5",
+          secondary: "#6366f1",
+        },
+      },
+    },
+    corePlugins: {
+      preflight: true,
+    },
+    // ✅ Enable responsive variants for CDN builds
+    variants: {
+      extend: {
+        display: ["responsive"],
+        flexDirection: ["responsive"],
+        width: ["responsive"],
+      },
+    },
+  };
+</script>
+
+  </head>
+  <body class="bg-gradient-to-br from-indigo-100 to-blue-200 text-gray-800">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
