@@ -90,56 +90,81 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen flex bg-[#121212] text-white">
-      {/* SIDEBAR */}
-      <div className="w-64 bg-[#1A1A1A] border-r border-neutral-800 flex flex-col justify-between">
-        <div className="p-6">
-          <h2 className="text-2xl font-semibold mb-8 text-white">Admin Panel</h2>
-          <div className="space-y-4">
-            <div
-              onClick={() => setActiveTab("daily")}
-              className={`flex items-center gap-3 cursor-pointer ${
-                activeTab === "daily"
-                  ? "text-white"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              <LayoutDashboard size={18} />
-              <span>Daily Report</span>
-            </div>
-            <div
-              onClick={() => setActiveTab("weekly")}
-              className={`flex items-center gap-3 cursor-pointer ${
-                activeTab === "weekly"
-                  ? "text-white"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              <CalendarDays size={18} />
-              <span>Weekly Report</span>
-            </div>
-          </div>
-        </div>
+<div className="min-h-screen flex flex-col md:flex-row bg-[#121212] text-white">
+  {/* SIDEBAR */}
+  <div className="md:w-64 w-full bg-[#1A1A1A] border-b md:border-b-0 md:border-r border-neutral-800 flex flex-row md:flex-col justify-between md:justify-start items-center md:items-stretch">
+    <div className="p-4 md:p-6 flex md:block w-full md:w-auto justify-between items-center">
+      <h2 className="text-xl md:text-2xl font-semibold mb-0 md:mb-8 text-white">Admin Panel</h2>
 
-        <div className="p-6 border-t border-neutral-800">
-          <div className="flex items-center gap-3 mb-4">
-            <Users size={18} className="text-gray-400" />
-            <div>
-              <p className="text-sm text-gray-400">Logged in as</p>
-              <p className="font-medium">{admin?.email || "Admin"}</p>
-            </div>
-          </div>
-          <button
-            onClick={() => setShowLogoutConfirm(true)}
-            className="flex items-center justify-center w-full bg-white text-black py-2 rounded-lg hover:bg-neutral-300 transition-all font-medium"
-          >
-            <LogOut size={16} className="mr-2" /> Logout
-          </button>
+      {/* Mobile Toggle Buttons */}
+      <div className="flex md:hidden gap-4">
+        <button
+          onClick={() => setActiveTab("daily")}
+          className={`p-2 rounded-md ${
+            activeTab === "daily" ? "bg-white text-black" : "bg-neutral-800 text-gray-400"
+          }`}
+        >
+          <LayoutDashboard size={18} />
+        </button>
+        <button
+          onClick={() => setActiveTab("weekly")}
+          className={`p-2 rounded-md ${
+            activeTab === "weekly" ? "bg-white text-black" : "bg-neutral-800 text-gray-400"
+          }`}
+        >
+          <CalendarDays size={18} />
+        </button>
+      </div>
+    </div>
+
+    {/* Sidebar Menu (Desktop Only) */}
+    <div className="hidden md:block px-6">
+      <div className="space-y-4">
+        <div
+          onClick={() => setActiveTab("daily")}
+          className={`flex items-center gap-3 cursor-pointer ${
+            activeTab === "daily"
+              ? "text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+        >
+          <LayoutDashboard size={18} />
+          <span>Daily Report</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("weekly")}
+          className={`flex items-center gap-3 cursor-pointer ${
+            activeTab === "weekly"
+              ? "text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+        >
+          <CalendarDays size={18} />
+          <span>Weekly Report</span>
         </div>
       </div>
+    </div>
 
-      {/* MAIN CONTENT */}
-      <div className="flex-1 p-10">
+    {/* Footer */}
+    <div className="hidden md:flex p-6 border-t border-neutral-800 flex-col">
+      <div className="flex items-center gap-3 mb-4">
+        <Users size={18} className="text-gray-400" />
+        <div>
+          <p className="text-sm text-gray-400">Logged in as</p>
+          <p className="font-medium">{admin?.email || "Admin"}</p>
+        </div>
+      </div>
+      <button
+        onClick={() => setShowLogoutConfirm(true)}
+        className="flex items-center justify-center w-full bg-white text-black py-2 rounded-lg hover:bg-neutral-300 transition-all font-medium"
+      >
+        <LogOut size={16} className="mr-2" /> Logout
+      </button>
+    </div>
+  </div>
+
+  {/* MAIN CONTENT */}
+  <div className="flex-1 p-4 md:p-10 overflow-x-auto">
         {activeTab === "daily" ? (
           <>
             <h1 className="text-3xl font-bold mb-8">Daily Summary Dashboard</h1>
