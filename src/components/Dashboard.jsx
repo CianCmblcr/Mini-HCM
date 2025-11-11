@@ -350,6 +350,32 @@ export default function Dashboard() {
                   </td>
                 </tr>
               )}
+
+                    {showLogoutConfirm && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm transition-all">
+          <div className="bg-[#1C1C1C] border border-neutral-700 rounded-2xl p-8 text-center w-[90%] max-w-sm shadow-2xl animate-fadeIn">
+            <h2 className="text-lg font-semibold mb-4 text-white">Confirm Logout</h2>
+            <p className="text-gray-400 text-sm mb-6">Are you sure you want to log out?</p>
+
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowLogoutConfirm(false)}
+                className="px-6 py-2 rounded-lg bg-neutral-700 text-gray-300 hover:bg-neutral-600 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-6 py-2 rounded-lg bg-white text-black hover:bg-neutral-300 font-medium transition-all"
+              >
+                Yes, Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+              
             </tbody>
           </table>
         </div>
